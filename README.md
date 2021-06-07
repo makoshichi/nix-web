@@ -11,3 +11,5 @@ Execução:
 - Abrir as configurações do projeto NixWeb (csproj) e na aba "Web", clicar em "Create Virtual Directory"
 - O front-end web será hospedado no campo de texto nesta mesma aba (padrão: http://localhost/NixWeb)
 - A aplicação web está enviando requisições para http://localhost:44326, aonde a API está configurada para rodar
+
+OBS: versão npm: 6.14.13
