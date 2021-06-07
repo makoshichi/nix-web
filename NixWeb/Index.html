@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <script src="Scripts/angular.js"></script>
+    <script src="Controllers/App.js"></script>
+    <script src="Controllers/DebtController.js"></script>
+    <script src="Controllers/CreditController.js"></script>
+    <script>
+        function showDebt() {
+            document.getElementById('credit-fields').style.display = 'none';
+            document.getElementById('debt-fields').style.display = 'block';
+        }
+        function showCredit() {
+            document.getElementById('debt-fields').style.display = 'none';
+            document.getElementById('credit-fields').style.display = 'block';
+        }
+    </script>
+    <link href="Css/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div ng-app="nix">
+        <h1>Extrato</h1>
+        <label><input type="radio" name="statementRadio" value="debt" onclick="showDebt();"> Débito</label> <br/>
+        <label><input type="radio" name="statementRadio" value="credit" onclick="showCredit();"> Crédito</label>
+
+        <div ng-controller="DebtController" id="debt-fields" style="display:none">
+            <p>Número da Conta: <input type="text" ng-model="filter.PaymentMethodNumber"></p>
+            <p>Data Inicial: <input type="date" ng-model="filter.InitialDate"></p>
+            <p>Data Final: <input type="date" ng-model="filter.FinalDate"></p>
+            <button ng-click="GetStatement()">Extrato de Débito</button>
+            <p>Extrato no início do período: {{data.initialValue}}</p>
+            <p>Extrato no final do período: {{data.finalValue}}</p>
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr ng-repeat="d in data.statements">
+                    <td>${{ d.purchaseValue }}</td>
+                    <td>{{ d.description }}</td>
+                </tr>
+            </table>
+            <p>{{errorMessage}}</p>
+        </div>
+
+        <div ng-controller="CreditController" id="credit-fields" style="display:none">
+            <p>Número do Cartão: <input type="text" ng-model="filter.PaymentMethodNumber"></p>
+            <p>Data Inicial: <input type="date" ng-model="filter.InitialDate"></p>
+            <p>Data Final: <input type="date" ng-model="filter.FinalDate"></p>
+            <button ng-click="GetStatement()">Extrato de Crédito</button>
+            <p>Limite no início do período: {{data.initialValue}}</p>
+            <p>Limite no final do período: {{data.finalValue}}</p>
+            <table>
+                <tr>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr ng-repeat="d in data.statements">
+                    <td>${{ d.purchaseValue }}</td>
+                    <td>{{ d.description }}</td>
+                </tr>
+            </table>
+            <p>{{errorMessage}}</p>
+        </div>
+
+    </div>
+</body>
+</html>
