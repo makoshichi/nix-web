@@ -12,4 +12,6 @@ Execução:
 - O front-end web será hospedado no campo de texto nesta mesma aba (padrão: http://localhost/NixWeb)
 - A aplicação web está enviando requisições para http://localhost:44326, aonde a API está configurada para rodar
 
+No mínimo um usuário deve ser criado através do endpoint api/Client/OpenAccount para utilização do sistema. Front-end não disponibilizado, maior detalhamento no readme da API e na documentação no Swagger.
+
 OBS: versão npm: 6.14.13
